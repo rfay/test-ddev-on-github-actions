@@ -13,3 +13,5 @@ jobs:
       - run: curl -LO https://29591-80669528-gh.circle-artifacts.com/0/~/artifacts/ddev_linux-amd64.v1.16.1-1-g4778dc4c.tar.gz && tar -zxf ddev_linux-amd64*tar.gz && mv ddev /usr/local/bin
 #      - run: curl -LO https://raw.githubusercontent.com/drud/ddev/master/scripts/install_ddev.sh && bash install_ddev.sh
       - run: mkdir junk && cd junk && ddev config --project-type=php && ddev start
+      - uses: mxschmitt/action-tmate@v3
+
