@@ -1,7 +1,7 @@
 on:
   push:
     branches:
-      - main
+      - master
   pull_request:
 
 name: test ddev-router's nginx.tmpl generation
@@ -11,8 +11,10 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v1
-#      - run: make
-      - run: curl -s -LO https://29617-80669528-gh.circle-artifacts.com/0/~/artifacts/ddev_linux-amd64.v1.16.2-alpha2-6-gd22dce22.tar.gz && tar -zxf ddev_linux-amd64*tar.gz && sudo mv ddev mkcert /usr/local/bin && mkcert -install
+      - run: make
+      - run: sudo cp .gotmp/bin/linux_amd64/ddev /usr/local/bin
+      - run: sudo curl -lL -s -o /usr/local/bin/mkcert https://github.com/drud/mkcert/releases/download/v1.4.6/mkcert-v1.4.6-linux-amd64 && sudo chmod +x /usr/local/bin/mkcert && mkcert -install
+#      - run: curl -s -LO https://29617-80669528-gh.circle-artifacts.com/0/~/artifacts/ddev_linux-amd64.v1.16.2-alpha2-6-gd22dce22.tar.gz && tar -zxf ddev_linux-amd64*tar.gz && sudo mv ddev mkcert /usr/local/bin && mkcert -install
       - run: ddev config global --instrumentation-opt-in=false --omit-containers=dba,ddev-ssh-agent
 #      - run: curl -LO https://raw.githubusercontent.com/drud/ddev/master/scripts/install_ddev.sh && bash install_ddev.sh
       - run: cd testsite && ddev config --project-type=php && ddev start

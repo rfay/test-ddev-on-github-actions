@@ -1,0 +1,41 @@
+site_name: DDEV-Local Documentation
+repo_url: https://github.com/drud/ddev
+repo_name: GitHub
+edit_uri: blob/master/docs/
+copyright: DRUD Technology, LLC
+theme: readthedocs
+extra_javascript:
+  - assets/fix-search.js
+markdown_extensions:
+  - markdown.extensions.toc
+pages:
+  - 'Home': 'index.md'
+  - 'ddev Basics':
+    - 'Using the CLI': 'users/cli-usage.md'
+    - 'ddev Hooks': 'users/extending-commands.md'
+    - 'Using Developer Tools with ddev': 'users/developer-tools.md'
+    - 'PHP Step Debugging': 'users/step-debugging.md'
+    - 'Troubleshooting': 'users/troubleshooting.md'
+    - 'Docker Installation': 'users/docker_installation.md'
+    - 'Performance': 'users/performance.md'
+    - 'Uninstalling DDEV-Local': 'users/uninstall.md'
+    - 'Frequently-Asked Questions (FAQ)': 'users/faq.md'
+    - '.ddev/config.yaml Options': 'users/extend/config_yaml.md'
+    - 'Database Server Types': 'users/extend/database_types.md'
+    - 'Bash and Zsh Completion': 'users/shell-completion.md'
+    - 'Additional Project Hostnames': 'users/extend/additional-hostnames.md'
+    - 'Shell Completion (bash, zsh, etc.)': 'users/shell-completion.md'
+    - 'Alternate Uses of DDEV-Local': 'users/alternate-uses.md'
+  - 'Extending ddev':
+    - 'Extending and Customizing Environments': 'users/extend/customization-extendibility.md'
+    - 'Additional Services': 'users/extend/additional-services.md'
+    - 'Defining Custom Services': 'users/extend/custom-compose-files.md'
+    - 'Customizing Docker Images': 'users/extend/customizing-images.md'
+    - 'Custom Commands': 'users/extend/custom-commands.md'
+    - 'In-container Configuration': 'users/extend/in-container-configuration.md'
+    - 'Custom TLS Certificates': 'users/extend/custom-tls-certificates.md'
+  - 'Integration with Hosting Providers':
+    - 'Pantheon': 'users/providers/pantheon.md'
+    - 'DDEV-Live': 'users/providers/DDEV-Live.md'
+  - 'Developer Documentation':
+    - 'Building, Testing, and Contributing': 'developers/building-contributing.md'
