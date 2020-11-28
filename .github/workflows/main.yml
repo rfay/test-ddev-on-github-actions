@@ -10,7 +10,7 @@ jobs:
         os: [ubuntu-20.04]
     steps:
       - uses: actions/checkout@v1
-      - run: curl -LO https://29591-80669528-gh.circle-artifacts.com/0/~/artifacts/ddev_linux-amd64.v1.16.1-1-g4778dc4c.tar.gz && tar -zxf ddev_linux-amd64*tar.gz && sudo mv ddev /usr/local/bin
+      - run: curl -LO https://29617-80669528-gh.circle-artifacts.com/0/~/artifacts/ddev_linux-amd64.v1.16.2-alpha2-6-gd22dce22.tar.gz && tar -zxf ddev_linux-amd64*tar.gz && sudo mv ddev /usr/local/bin
 #      - run: curl -LO https://raw.githubusercontent.com/drud/ddev/master/scripts/install_ddev.sh && bash install_ddev.sh
       - uses: mxschmitt/action-tmate@v3
       - run: mkdir junk && cd junk && ddev config --project-type=php && ddev start
