@@ -8,7 +8,7 @@ name: test ddev-router's nginx.tmpl generation
 
 jobs:
   test:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v1
 #      - run: make
