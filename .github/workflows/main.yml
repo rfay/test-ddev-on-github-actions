@@ -16,5 +16,5 @@ jobs:
       - run: mkdir junk && cd junk && ddev config --project-type=php && ddev start
       - run: echo "this is junk"> index.html
       - run: curl -s https://junk.ddev.site | grep "this is junk"
-#      - uses: mxschmitt/action-tmate@v3
+      - uses: mxschmitt/action-tmate@v3
 
