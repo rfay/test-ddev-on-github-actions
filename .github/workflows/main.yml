@@ -1,4 +1,9 @@
-on: [push, pull_request]
+on:
+  push:
+    brances:
+      - main
+  pull_request:
+
 name: tests
 
 jobs:
@@ -14,7 +19,8 @@ jobs:
       - run: ddev config global --instrumentation-opt-in=false --omit-containers=dba,ddev-ssh-agent
 #      - run: curl -LO https://raw.githubusercontent.com/drud/ddev/master/scripts/install_ddev.sh && bash install_ddev.sh
       - run: mkdir junk && cd junk && ddev config --project-type=php && ddev start
-      - run: echo "this is junk"> index.html
-      - run: curl -s https://junk.ddev.site | grep "this is junk"
+      - run: echo "this is junk"> ~/junk/index.html
+      - run: curl -s https://junk.ddev.site
       - uses: mxschmitt/action-tmate@v3
+      - run: curl -s https://junk.ddev.site | grep "this is junk"
 
