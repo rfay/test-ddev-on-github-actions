@@ -10,11 +10,14 @@ name: test ddev-router's nginx.tmpl generation
 
 jobs:
   test:
+    defaults:
+      run:
+        shell: bash
     runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-16.04, ubuntu-18.04, ubuntu-20.04, macos-latest]
+        os: [ubuntu-16.04, ubuntu-18.04, ubuntu-20.04]
     steps:
       - uses: actions/checkout@v1
       - run: make
