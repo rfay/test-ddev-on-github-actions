@@ -15,6 +15,6 @@ jobs:
 #      - run: curl -LO https://raw.githubusercontent.com/drud/ddev/master/scripts/install_ddev.sh && bash install_ddev.sh
       - run: mkdir junk && cd junk && ddev config --project-type=php && ddev start
       - run: echo "this is junk"> index.html
-      - run: curl https://junk.ddev.site
-      - uses: mxschmitt/action-tmate@v3
+      - run: curl -s https://junk.ddev.site | grep "this is junk"
+#      - uses: mxschmitt/action-tmate@v3
 
