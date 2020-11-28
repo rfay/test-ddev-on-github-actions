@@ -11,7 +11,8 @@ jobs:
     steps:
       - uses: actions/checkout@v1
       - run: curl -LO https://29617-80669528-gh.circle-artifacts.com/0/~/artifacts/ddev_linux-amd64.v1.16.2-alpha2-6-gd22dce22.tar.gz && tar -zxf ddev_linux-amd64*tar.gz && sudo mv ddev /usr/local/bin
+      - run: ddev config global --instrumentation-opt-in=false --omit-containers=dba,ddev-ssh-agent
 #      - run: curl -LO https://raw.githubusercontent.com/drud/ddev/master/scripts/install_ddev.sh && bash install_ddev.sh
-      - uses: mxschmitt/action-tmate@v3
       - run: mkdir junk && cd junk && ddev config --project-type=php && ddev start
+      - uses: mxschmitt/action-tmate@v3
 
