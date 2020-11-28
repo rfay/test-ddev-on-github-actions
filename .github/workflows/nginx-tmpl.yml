@@ -19,7 +19,6 @@ jobs:
 #      - run: curl -LO https://raw.githubusercontent.com/drud/ddev/master/scripts/install_ddev.sh && bash install_ddev.sh
       - run: cd testsite && ddev config --project-type=php && ddev start
       - run: docker inspect --format "{{json .State.Health }}" ddev-router | jq -r .Log[-1].Output | grep "ddev-router is healthy with 2 upstreams"
-      - run: curl -s https://testsite.ddev.site
 #      - uses: mxschmitt/action-tmate@v3
       - run: curl -s https://testsite.ddev.site | grep "This is testsite"
 
