@@ -13,6 +13,9 @@ jobs:
     defaults:
       run:
         shell: bash
+    env:
+      OS: ${{ go env GOOS }}
+      ARCH: ${{ go env GOARCH }}
     runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
@@ -22,7 +25,8 @@ jobs:
       - uses: actions/checkout@v1
       - run: make
       - run: sudo cp .gotmp/bin/*/ddev /usr/local/bin
-      - run: sudo curl --fail -lL -s -o "/usr/local/bin/mkcert https://github.com/drud/mkcert/releases/download/v1.4.6/mkcert-v1.4.6-$(go env GOOS)-amd64" && sudo chmod +x /usr/local/bin/mkcert
+      - run: printf "OS=${{env.OS}} ARCH=${{env.ARCH}}"
+      - run: sudo curl --fail -lL -s -o "/usr/local/bin/mkcert https://github.com/drud/mkcert/releases/download/v1.4.6/mkcert-v1.4.6-${{env.OS}}-${{env.ARCH}}" && sudo chmod +x /usr/local/bin/mkcert
 #      - run: curl -s -LO https://29617-80669528-gh.circle-artifacts.com/0/~/artifacts/ddev_linux-amd64.v1.16.2-alpha2-6-gd22dce22.tar.gz && tar -zxf ddev_linux-amd64*tar.gz && sudo mv ddev mkcert /usr/local/bin && mkcert -install
       - run: ddev config global --instrumentation-opt-in=false --omit-containers=dba,ddev-ssh-agent
 #      - run: curl -LO https://raw.githubusercontent.com/drud/ddev/master/scripts/install_ddev.sh && bash install_ddev.sh
