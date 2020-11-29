@@ -20,7 +20,7 @@ jobs:
         os: [ ubuntu-16.04, ubuntu-18.04, ubuntu-20.04 ]
     steps:
     - name: Set env
-      run: printf "OS=$(go env GOOS)\nARCH=$(go env GOARCH)\n" >> $GITHUB_ENV
+      run: printf "OS=$(go env GOOS)\nARCH=$(go env GOARCH)\n" >> $GITHUB_ENV && cat $GITHUB_ENV
     - uses: actions/checkout@v1
     - run: echo ${{env.OS}}
     - run: make
