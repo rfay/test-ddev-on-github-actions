@@ -21,6 +21,7 @@ jobs:
     steps:
     - name: Set env
       run: printf "OS=$(go env GOOS)\nARCH=$(go env GOARCH)\n" >> $GITHUB_ENV && cat $GITHUB_ENV
+    - run: echo "OS=$OS and ARCH=$ARCH"
     - uses: actions/checkout@v1
     - run: printf "OS=${{env.OS}} ARCH=${{env.ARCH}}\n"
     - run: make
