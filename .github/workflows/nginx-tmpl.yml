@@ -30,4 +30,5 @@ jobs:
     - run: docker inspect --format "{{json .State.Health }}" ddev-router | jq -r .Log[-1].Output | grep "ddev-router is healthy with 2 upstreams"
     #      - uses: mxschmitt/action-tmate@v3
     - run: curl --fail -s https://testsite.ddev.site | grep "This is testsite" || curl https://testsite.ddev.site
+    - run: .github/workflows/multiplesites.sh
 
