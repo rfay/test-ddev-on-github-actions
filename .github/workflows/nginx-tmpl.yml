@@ -16,8 +16,8 @@ jobs:
     env:
       OS: linux
       ARCH: amd64
-#      OS: ${{ go env GOOS }}
-#      ARCH: ${{ go env GOARCH }}
+      OS2: ${{ <go env GOOS> }}
+      ARCH2: ${{ <go env GOARCH> }}
     runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
@@ -26,7 +26,7 @@ jobs:
     steps:
       - uses: actions/checkout@v1
       - run: make
-      - run: sudo cp .gotmp/bin/*/ddev /usr/local/bin
+      - run: sudo cp .gotmp/bin/${{ env.OS }}_{{ env.ARCH }}/ddev /usr/local/bin
       - run: printf "OS=${{env.OS}} ARCH=${{env.ARCH}}"
       - run: sudo curl --fail -lL -s -o /usr/local/bin/mkcert https://github.com/drud/mkcert/releases/download/v1.4.6/mkcert-v1.4.6-${{env.OS}}-${{env.ARCH}} && sudo chmod +x /usr/local/bin/mkcert && mkcert -install
 #      - run: curl -s -LO https://29617-80669528-gh.circle-artifacts.com/0/~/artifacts/ddev_linux-amd64.v1.16.2-alpha2-6-gd22dce22.tar.gz && tar -zxf ddev_linux-amd64*tar.gz && sudo mv ddev mkcert /usr/local/bin && mkcert -install
