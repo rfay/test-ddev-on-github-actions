@@ -22,7 +22,7 @@ jobs:
     - name: Set env
       run: printf "OS=$(go env GOOS)\nARCH=$(go env GOARCH)\n" >> $GITHUB_ENV && cat $GITHUB_ENV
     - uses: actions/checkout@v1
-    - run: echo ${{env.OS}}
+    - run: printf "OS=${{env.OS}} ARCH=${{env.ARCH}}\n"
     - run: make
     - run: sudo cp .gotmp/bin/${{env.OS}}_{{env.ARCH}}/ddev /usr/local/bin
     - run: printf "OS=${{env.OS}} ARCH=${{env.ARCH}}"
