@@ -19,14 +19,11 @@ jobs:
       matrix:
         os: [ ubuntu-16.04, ubuntu-18.04, ubuntu-20.04 ]
     steps:
-    - name: Set env
-      run: printf "OS=$(go env GOOS)\nARCH=$(go env GOARCH)\n" >> $GITHUB_ENV && cat $GITHUB_ENV
-    - run: echo "OS=$OS and ARCH=$ARCH"
     - uses: actions/checkout@v1
-    - run: printf "OS=${{env.OS}} ARCH=${{env.ARCH}}\n"
+    - name: Set environment variables
+      run: printf "OS=$(go env GOOS)\nARCH=$(go env GOARCH)\n" >> $GITHUB_ENV && cat $GITHUB_ENV
     - run: make
-    - run: sudo cp .gotmp/bin/${{env.OS}}_${{env.ARCH}}/ddev /usr/local/bin
-    - run: printf "OS=${{env.OS}} ARCH=${{env.ARCH}}"
+    - run: sudo cp .gotmp/bin/${OS}_${ARCH}/ddev /usr/local/bin
     - run: sudo curl --fail -lL -s -o /usr/local/bin/mkcert https://github.com/drud/mkcert/releases/download/v1.4.6/mkcert-v1.4.6-${OS}-${ARCH} && sudo chmod +x /usr/local/bin/mkcert && mkcert -install
     - run: ddev config global --instrumentation-opt-in=false --omit-containers=dba,ddev-ssh-agent
     - run: cd testsite && ddev config --project-type=php && ddev start
