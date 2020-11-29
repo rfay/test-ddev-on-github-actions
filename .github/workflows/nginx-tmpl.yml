@@ -22,8 +22,9 @@ jobs:
     - name: Set env
       run: printf "OS=$(go env GOOS)\nARCH=$(go env GOARCH)\n" >> $GITHUB_ENV
     - uses: actions/checkout@v1
+    - run: echo ${{env.OS}}
     - run: make
-    - run: sudo cp .gotmp/bin/${{ env.OS }}_{{ env.ARCH }}/ddev /usr/local/bin
+    - run: sudo cp .gotmp/bin/${{env.OS}}_{{env.ARCH}}/ddev /usr/local/bin
     - run: printf "OS=${{env.OS}} ARCH=${{env.ARCH}}"
     - run: sudo curl --fail -lL -s -o /usr/local/bin/mkcert https://github.com/drud/mkcert/releases/download/v1.4.6/mkcert-v1.4.6-${{env.OS}}-${{env.ARCH}} && sudo chmod +x /usr/local/bin/mkcert && mkcert -install
     - run: ddev config global --instrumentation-opt-in=false --omit-containers=dba,ddev-ssh-agent
